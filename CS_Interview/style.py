@@ -1,27 +1,60 @@
-# style.py
-
-# Common styles for questions and answers.
 shadow = "rgba(0, 0, 0, 0.15) 0px 2px 8px"
-chat_margin = "20%"
-message_style = dict(
-    padding="1em",
-    border_radius="5px",
-    margin_y="0.5em",
+
+nav_style = dict(
+    position="fixed",
+    top=0,
+    left=0,
+    width="100%",
+    height="4em",
+    display="flex",
+    align_items="center",
+    justify_content="flex-start",
+    padding="0 2em",
     box_shadow=shadow,
-    max_width="30em",
-    display="inline-block",
+    z_index=1,
 )
 
-# Set specific styles for questions and answers.
-question_style = message_style | dict(
-    bg="#F5EFFE", margin_left=chat_margin
-)
-answer_style = message_style | dict(
-    bg="#DEEAFD", margin_right=chat_margin
+nav_link_style = dict(
+    margin="0 1em",
+    color="black",
+    _hover={
+        "text-decoration": None,
+    },
 )
 
-# Styles for the action bar.
-input_style = dict(
-    border_width="1px", padding="1em", box_shadow=shadow
+main_flex_style = dict(
+    display="flex",
+    justify_content="center",
+    align_items="center",
+    height="100vh",
 )
-button_style = dict(bg="#CEFFEE", box_shadow=shadow)
+
+main_text_style = dict(
+    font_size="48px",
+    font_weight="700",
+    background="linear-gradient(10deg,#52b8f1,#d889fd)",
+    letter_spacing="1.6px",
+    color="transparent",
+    background_clip="text",
+    margin="10px 0",
+)
+
+main_search_style= dict(
+    padding="2em 2em",
+    box_shadow=shadow,
+    width="100%",
+    border_radius="3em",
+)
+
+main_button_style = dict(
+    border_radius="1em",
+    box_shadow="rgba(151, 65, 252, 0.8) 0 15px 30px -10px",
+    background_image="linear-gradient(144deg,#AF40FF,#5B42F3 50%,#00DDEB)",
+    box_sizing="border-box",
+    color="white",
+    opacity="0.6",
+    _hover={
+        "opacity": 1,
+    },
+    margin="20px 0"
+)
