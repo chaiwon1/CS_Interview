@@ -7,19 +7,31 @@ from reflex import Input
 def menu() -> rx.Component:
     return rx.box(
         rx.link(
-            "Home",
+            rx.button(
+                "HOME",
+                variant="ghost",
+            ),
             href="/",
             style=style.nav_link_style,
+            button=True,
         ),
         rx.link(
-            "signin",
+            rx.button(
+                "SIGNIN",
+                variant="ghost",
+            ),
             href="/signin",
             style=style.nav_link_style,
+            button=True,
         ),
         rx.link(
-            "signup",
+            rx.button(
+                "SIGNUP",
+                variant="ghost",
+            ),
             href="/signup",
             style=style.nav_link_style,
+            button=True,
         ),
         style=style.nav_style,
     )
@@ -29,7 +41,6 @@ def search_input():
     return Input(
         type="search",
         autocomplete="off",
-        id="mantine-aikol13wn",
         placeholder="검색어를 입력해 주세요",
         role="combobox",
         aria_haspopup="listbox",
@@ -37,7 +48,6 @@ def search_input():
         aria_autocomplete="list",
         aria_invalid="false",
         data_with_icon="true",
-        value="",
         style=style.main_search_style,
     )
 
@@ -48,10 +58,7 @@ def index() -> rx.Component:
         menu(),
         rx.flex(
             rx.vstack(
-                rx.text(
-                    "이젠 IT 면접 준비는 Reflex로!",
-                    style=style.main_text_style,
-                ),
+                rx.text("이젠 IT 면접 준비는 Reflex로!", style=style.main_text_style),
                 search_input(),
                 rx.link(
                     rx.button(
@@ -78,96 +85,93 @@ class FormState(rx.State):
 @rx.page("/signin")
 def signin():
     return rx.box(
+        menu(),
         rx.box(
             rx.hstack(
                 rx.box(
                     rx.form(
                         rx.vstack(
-                            rx.heading("Sign In"),
+                            rx.heading(
+                                "이메일로 로그인",
+                                style=style.signin_left_pannel_header_style,
+                            ),
                             rx.box(
+                                rx.text(
+                                    "이메일", style=style.signin_left_pannel_text_style
+                                ),
                                 rx.input(
-                                    placeholder="First Name",
-                                    name="first_name",
-                                )
+                                    placeholder="이메일을 입력해주세요.",
+                                    as_="b",
+                                    name="email",
+                                    style=style.signin_left_pannel_input_style,
+                                ),
+                                style=style.signin_pannel_box_style,
                             ),
-                            rx.input(
-                                placeholder="Last Name",
-                                name="last_name",
+                            rx.box(
+                                rx.text(
+                                    "비밀번호", style=style.signin_left_pannel_text_style
+                                ),
+                                rx.input(
+                                    placeholder="비밀번호를 입력해주세요.",
+                                    as_="b",
+                                    name="password",
+                                    style=style.signin_left_pannel_input_style,
+                                ),
+                                style=style.signin_pannel_box_style,
                             ),
-                            rx.button(
-                                "Sign in",
-                                type_="submit",
+                            rx.box(
+                                rx.button(
+                                    "로그인",
+                                    type_="submit",
+                                    style=style.signin_left_pannel_button_style,
+                                ),
+                                style=style.signin_pannel_box_style,
                             ),
                         ),
                         on_submit=FormState.handle_submit,
                         reset_on_submit=True,
+                        width="100%",
                     ),
-                    width="50%",
-                    height="100%",
-                    text_align="center",
-                    display="flex",
-                    justify_content="center",
-                    align_items="center",
+                    style=style.signin_left_pannel_style,
                 ),
                 rx.box(
                     rx.form(
                         rx.vstack(
                             rx.heading(
-                                "Please Join Us Page!",
+                                "아직 계정이 없으신가요?",
+                                style=style.signin_right_pannel_header_style,
                             ),
-                            rx.text(
-                                "Enter your personal details and start journey with us",
-                                font_size="1em",
-                            ),
-                            rx.link(
-                                rx.button(
-                                    "Sign Up",
-                                    border="1px solid #FFFFFF",
-                                    color="#FFFFFF",
-                                    background_color="transparent",
-                                    font_weight="bold",
-                                    padding="12px 45px",
-                                    letter_spacing="1px",
-                                    text_transform="uppercase",
-                                    border_radius="1em",
-                                    # box_shadow="rgba(151, 65, 252, 0.8) 0 15px 30px -10px",
-                                    box_sizing="border-box",
-                                    # opacity="0.6",
-                                    _hover={
-                                        "opacity": 1,
-                                    },
+                            rx.box(
+                                rx.text(
+                                    "간단하게 이메일만으로 시작할 수 있습니다.",
+                                    style=style.signin_right_pannel_text_style,
                                 ),
-                                href="/signup",
-                                button=True,
+                                rx.text(
+                                    "지금 빠르게 회원가입을 하고 Reflex를 시작해보세요!",
+                                    style=style.signin_right_pannel_text_style,
+                                ),
                             ),
+                            rx.box(
+                                rx.link(
+                                    rx.button(
+                                        "회원가입",
+                                        style=style.signin_right_pannel_button_style,
+                                    ),
+                                    href="/signup",
+                                    button=True,
+                                ),
+                                style=style.signin_pannel_box_style,
+                            ),
+                            width="100%",
                         ),
                     ),
-                    width="50%",
-                    height="100%",
-                    background_image="linear-gradient(#FF4B2B, #FF416C)",
-                    text_align="center",
-                    display="flex",
-                    justify_content="center",
-                    align_items="center",
+                    style=style.signin_right_pannel_style,
                 ),
-                width="100%",
-                height="480px",
+                style=style.signin_stack_style,
             ),
-            border_radius="10px",
-            box_shadow="0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)",
-            position="relative",
-            overflow="hidden",
-            width="768px",
-            max_width="100%",
-            min_height="480px",
-            display="flex",
-            justify_content="center",
-            align_items="center",
+            style=style.signin_innerbox_style,
         ),
-        display="flex",
-        justify_content="center",
-        align_items="center",
-        height="100vh",
+        style=style.signin_outbox_style,
     )
 
 
