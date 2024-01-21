@@ -1,6 +1,7 @@
 shadow = "rgba(0, 0, 0, 0.15) 0px 2px 8px"
 background = "linear-gradient(10deg,#52b8f1,#d889fd)"
 
+# nav bar
 nav_style = dict(
     position="fixed",
     top=0,
@@ -23,6 +24,8 @@ nav_link_style = dict(
     },
 )
 
+
+# main page
 main_flex_style = dict(
     display="flex",
     justify_content="center",
@@ -61,6 +64,8 @@ main_button_style = dict(
     margin="20px 0",
 )
 
+
+# signin page
 signin_outbox_style = dict(
     display="flex",
     justify_content="center",
@@ -68,7 +73,7 @@ signin_outbox_style = dict(
     height="100vh",
 )
 
-signin_innerbox_style = dict(
+signin_inbox_style = dict(
     border_radius="1em",
     box_shadow=shadow,
     position="relative",
