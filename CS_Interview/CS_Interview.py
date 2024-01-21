@@ -9,6 +9,14 @@ career_options: List[str] = ["신입", "1-3년", "4-6년", "7년 이상"]
 language_options: List[str] = ["Python", "Java", "C", "C#", "C++", "Go", "Rust", "기타"]
 
 
+class FormState(rx.State):
+    form_data: dict = {}
+
+    def handle_submit(self, form_data: dict):
+        """Handle the form submit."""
+        self.form_data = form_data
+
+
 class SelectState(rx.State):
     option: str = "No selection yet."
 
@@ -39,6 +47,15 @@ def menu() -> rx.Component:
                 variant="ghost",
             ),
             href="/signup",
+            style=style.nav_link_style,
+            button=True,
+        ),
+        rx.link(
+            rx.button(
+                "LABS",
+                variant="ghost",
+            ),
+            href="/labs",
             style=style.nav_link_style,
             button=True,
         ),
@@ -81,14 +98,6 @@ def index() -> rx.Component:
             style=style.main_flex_style,
         ),
     )
-
-
-class FormState(rx.State):
-    form_data: dict = {}
-
-    def handle_submit(self, form_data: dict):
-        """Handle the form submit."""
-        self.form_data = form_data
 
 
 @rx.page("/signin")
@@ -314,6 +323,76 @@ def signup():
             style=style.signin_inbox_style,
         ),
         style=style.signin_outbox_style,
+    )
+
+
+@rx.page("/labs")
+def labs():
+    return rx.box(
+        menu(),
+        rx.box(
+            rx.grid(
+                rx.grid_item(
+                    rx.card(
+                        rx.text("Body of the Card Component"),
+                        header=rx.heading("Header", size="lg"),
+                        footer=rx.heading("Footer", size="sm"),
+                    ),
+                    row_span=1,
+                    col_span=1,
+                ),
+                rx.grid_item(
+                    rx.card(
+                        rx.text("Body of the Card Component"),
+                        header=rx.heading("Header", size="lg"),
+                        footer=rx.heading("Footer", size="sm"),
+                    ),
+                    row_span=1,
+                    col_span=1,
+                ),
+                rx.grid_item(
+                    rx.card(
+                        rx.text("Body of the Card Component"),
+                        header=rx.heading("Header", size="lg"),
+                        footer=rx.heading("Footer", size="sm"),
+                    ),
+                    row_span=1,
+                    col_span=1,
+                ),
+                rx.grid_item(
+                    rx.card(
+                        rx.text("Body of the Card Component"),
+                        header=rx.heading("Header", size="lg"),
+                        footer=rx.heading("Footer", size="sm"),
+                    ),
+                    row_span=1,
+                    col_span=1,
+                ),
+                rx.grid_item(
+                    rx.card(
+                        rx.text("Body of the Card Component"),
+                        header=rx.heading("Header", size="lg"),
+                        footer=rx.heading("Footer", size="sm"),
+                    ),
+                    row_span=1,
+                    col_span=1,
+                ),
+                rx.grid_item(
+                    rx.card(
+                        rx.text("Body of the Card Component"),
+                        header=rx.heading("Header", size="lg"),
+                        footer=rx.heading("Footer", size="sm"),
+                    ),
+                    row_span=1,
+                    col_span=1,
+                ),
+                template_columns="repeat(3, 1fr)",
+                h="10em",
+                width="70%",
+                gap=4,
+            ),
+        ),
+        style=style.labs_grid_style,
     )
 
 

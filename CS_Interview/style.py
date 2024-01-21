@@ -65,7 +65,7 @@ main_button_style = dict(
 )
 
 
-# signin page
+# signin+signup page
 signin_outbox_style = dict(
     display="flex",
     justify_content="center",
@@ -176,4 +176,13 @@ signin_right_pannel_button_style = dict(
         "box_shadow": "rgba(0, 0, 0, 0.15) 0px 2px 8px",
         "border": "None",
     },
+)
+
+# labs page
+labs_grid_style = dict(
+    display="flex",
+    justify_content="center",
+    align_items="center",
+    width="80%",
+    margin="100px 0"
 )
