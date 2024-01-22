@@ -88,7 +88,7 @@ signin_inbox_style = dict(
 
 signin_stack_style = dict(
     width="100%",
-    height="480px",
+    height="100%",
 )
 
 signin_left_pannel_style = dict(
@@ -178,11 +178,26 @@ signin_right_pannel_button_style = dict(
     },
 )
 
+signup_inbox_style = dict(
+    border_radius="1em",
+    box_shadow=shadow,
+    position="relative",
+    overflow="hidden",
+    width="768px",
+    max_width="100%",
+    min_height="750px",
+    display="flex",
+    justify_content="center",
+    align_items="center",
+
+)
+
 # labs page
 labs_grid_style = dict(
     display="flex",
     justify_content="center",
     align_items="center",
-    width="80%",
+    width="100%",
     margin="100px 0"
 )
+
