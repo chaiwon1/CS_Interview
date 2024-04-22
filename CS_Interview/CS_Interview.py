@@ -1,25 +1,11 @@
 import reflex as rx
 from CS_Interview import style
-from CS_Interview.state import State
-from reflex import Input
+from .state import FormState, SelectState
 from typing import List
 
 
 career_options: List[str] = ["신입", "1-3년", "4-6년", "7년 이상"]
 language_options: List[str] = ["Python", "Java", "C", "C#", "C++", "Go", "Rust", "기타"]
-
-
-class FormState(rx.State):
-    form_data: dict = {}
-
-    def handle_submit(self, form_data: dict):
-        """Handle the form submit."""
-        self.form_data = form_data
-
-
-class SelectState(rx.State):
-    option: str = "No selection yet."
-
 
 def menu() -> rx.Component:
     return rx.box(
@@ -64,7 +50,7 @@ def menu() -> rx.Component:
 
 
 def search_input():
-    return Input(
+    return rx.input(
         type="search",
         autocomplete="off",
         placeholder="검색어를 입력해 주세요",
@@ -100,7 +86,6 @@ def index() -> rx.Component:
     )
 
 
-@rx.page("/signin")
 def signin():
     return rx.box(
         menu(),
@@ -129,7 +114,7 @@ def signin():
                                 rx.text(
                                     "비밀번호", style=style.signin_left_pannel_text_style
                                 ),
-                                rx.password(
+                                rx.input(
                                     placeholder="비밀번호를 입력해주세요.",
                                     as_="b",
                                     name="password",
@@ -140,7 +125,7 @@ def signin():
                             rx.box(
                                 rx.button(
                                     "로그인",
-                                    type_="submit",
+                                    type="submit",
                                     style=style.signin_left_pannel_button_style,
                                 ),
                                 style=style.signin_pannel_box_style,
@@ -191,7 +176,6 @@ def signin():
     )
 
 
-@rx.page("/signup")
 def signup():
     return rx.box(
         menu(),
@@ -247,7 +231,7 @@ def signup():
                                 rx.text(
                                     "비밀번호", style=style.signin_left_pannel_text_style
                                 ),
-                                rx.password(
+                                rx.input(
                                     placeholder="비밀번호를 입력해주세요.",
                                     as_="b",
                                     name="password1",
@@ -259,7 +243,7 @@ def signup():
                                 rx.text(
                                     "비밀번호 확인", style=style.signin_left_pannel_text_style
                                 ),
-                                rx.password(
+                                rx.input(
                                     placeholder="비밀번호를 다시 입력해주세요.",
                                     as_="b",
                                     name="password2",
@@ -271,7 +255,7 @@ def signup():
                                 rx.text(
                                     "이름", style=style.signin_left_pannel_text_style
                                 ),
-                                rx.password(
+                                rx.input(
                                     placeholder="이름을 입력해주세요.",
                                     as_="b",
                                     name="username",
@@ -306,7 +290,7 @@ def signup():
                             rx.box(
                                 rx.button(
                                     "로그인",
-                                    type_="submit",
+                                    type="submit",
                                     style=style.signin_left_pannel_button_style,
                                 ),
                                 style=style.signin_pannel_box_style,
@@ -326,78 +310,7 @@ def signup():
     )
 
 
-@rx.page("/labs")
-def labs():
-    return rx.box(
-        menu(),
-        rx.box(
-            rx.vstack(
-                search_input(),
-                rx.grid(
-                    rx.grid_item(
-                        rx.card(
-                            rx.text(
-                                "Body of the Card Component",
-                            ),
-                            header=rx.heading("Header", size="lg"),
-                            footer=rx.heading("Footer", size="sm"),
-                        ),
-                        row_span=1,
-                        col_span=1,
-                    ),
-                    rx.grid_item(
-                        rx.card(
-                            rx.text("Body of the Card Component"),
-                            header=rx.heading("Header", size="lg"),
-                            footer=rx.heading("Footer", size="sm"),
-                        ),
-                        row_span=1,
-                        col_span=1,
-                    ),
-                    rx.grid_item(
-                        rx.card(
-                            rx.text("Body of the Card Component"),
-                            header=rx.heading("Header", size="lg"),
-                            footer=rx.heading("Footer", size="sm"),
-                        ),
-                        row_span=1,
-                        col_span=1,
-                    ),
-                    rx.grid_item(
-                        rx.card(
-                            rx.text("Body of the Card Component"),
-                            header=rx.heading("Header", size="lg"),
-                            footer=rx.heading("Footer", size="sm"),
-                        ),
-                        row_span=1,
-                        col_span=1,
-                    ),
-                    rx.grid_item(
-                        rx.card(
-                            rx.text("Body of the Card Component"),
-                            header=rx.heading("Header", size="lg"),
-                            footer=rx.heading("Footer", size="sm"),
-                        ),
-                        row_span=1,
-                        col_span=1,
-                    ),
-                    rx.grid_item(
-                        rx.card(
-                            rx.text("Body of the Card Component"),
-                            header=rx.heading("Header", size="lg"),
-                            footer=rx.heading("Footer", size="sm"),
-                        ),
-                        row_span=1,
-                        col_span=1,
-                    ),
-                    template_columns="repeat(3, 1fr)",
-                    gap=4,
-                ),
-                style=style.labs_grid_style,
-            )
-        ),
-    )
-
-
 app = rx.App()
-app.compile()
+app.add_page(index, route="/")
+app.add_page(signin, route="/signin")
+app.add_page(signup, route="/signup")
